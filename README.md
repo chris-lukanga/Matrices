@@ -1,6 +1,3 @@
-Based on your repository content and your journey as a second-year Computer Science and Informatics student at the University of Johannesburg (UJ), here is a tailored `README.md` for your project. It highlights the educational purpose of the project and documents the current functionality.
-
-***
 
 # Linear Algebra Matrix Implementation
 
