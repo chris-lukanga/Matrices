@@ -252,7 +252,61 @@ public class Matrix {
         return nums;
     }
 
+    
+    /**
+     * Returns the transpose of the matrix
+     * @throws Exception 
+     */
+    public Matrix getTranspose() throws Exception{
+        float nums[] = new float[rows*cols];
+        for(int i = 0; i< rows; i++){
+            for(int j = 0; j< cols; j++){
+                nums[i + rows*j] = this.getValueAt(i+1, j+1);
+            }
+        }
+        return new Matrix(cols, rows, nums);
+    }
 
+    /**
+     * checks if a matrix is square
+     * @return true if the matrix is square, false otherwise
+     */
 
+    public boolean isSquare(){
+        return rows == cols;
+    }
+
+    /**
+     * Checks if 2 matrices are equal, meaning they have the same dimensions and the same entries
+     * @param other the other matrix
+     * @return true if the matrices are equal, false otherwise
+     */
+    public boolean equals(Matrix other){
+        if(rows != other.rows || cols != other.cols){
+            return false;
+        }
+        for(int i = 0; i< rows*cols; i++){
+            if(nums[i] != other.nums[i]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * returns the trace of a matrix, defined only for square matrices, which is the sum of the entries on the main diagonal
+     * @return the trace of the matrix
+     * @throws Exception 
+     */
+    public float trace() throws Exception{
+        if(!isSquare()){
+            throw new RuntimeException("Trace is only defined for square matrices");
+        }
+        float sum = 0;
+        for(int i = 0; i< rows; i++){
+            sum += this.getValueAt(i+1, i+1);
+        }
+        return sum;
+    }
 
 }

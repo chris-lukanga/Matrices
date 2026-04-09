@@ -14,7 +14,7 @@ class Main{
         Matrix B  = new Matrix(1, 3, new float[]{ 2, 0, 4});
 
 
-        System.out.println(A.mult(B));
+        System.out.println(A.mult(B).getTranspose());
         //System.out.println(mat2.getValueAt(3,4));
     }
 
