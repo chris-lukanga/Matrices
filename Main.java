@@ -10,11 +10,11 @@ class Main{
 
         
 
-        Matrix A = new Matrix(3, 4 , new float[]{2, 1, 0, 3,-1, 0, 2, 4,4, -2, 7, 0});
-        Matrix B  = new Matrix(3, 4, new float[]{ -4, 3, 5, 1,2, 2, 0, -1,3, 2, -4, 5});
+        Matrix A = new Matrix(2, 1 , new float[]{1,2});
+        Matrix B  = new Matrix(1, 3, new float[]{ 2, 0, 4});
 
 
-        System.out.println(A.subtractMatrix(B));
+        System.out.println(A.mult(B));
         //System.out.println(mat2.getValueAt(3,4));
     }
 

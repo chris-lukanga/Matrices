@@ -109,6 +109,27 @@ public class Matrix {
         return nums[j + cols*(i)];
     }
 
+    /**
+     * sets the value at the specified index
+     * @param i the row
+     * @param j the column
+     * @param value the value to set at that position
+     * @return the value that was set
+     * @throws Exception
+     */
+    public float setValueAt(int i, int j, float value) throws Exception{
+        j--;
+        i--;
+        if(i >rows || i<0){
+            throw new Exception(" Row "+ i+" does not exist");
+        }
+        if(j>cols || j<0){
+            throw new Exception(" Column " + j+" does not exist");
+        }
+
+        return nums[j + cols*(i)] = value;
+    }
+
 
     @Override 
     public String toString(){
@@ -178,11 +199,58 @@ public class Matrix {
         return this;
     }
 
-    public Matrix mult(){
 
-        return null;
+
+    /**
+     * Matrix multiplication defined only when the number of columns in the first matrix is equal to the number of rows in the second matrix
+     * @param other
+     * @return
+     * @throws Exception 
+     */
+    public Matrix mult(Matrix other) throws Exception{
+
+        //checking for the correct dimensions
+        if(cols != other.rows){
+            throw new RuntimeException("The number of columns in the first matrix must be equal to the number of rows in the second matrix");
+        }
+
+        //getting the columns of the second matrix
+        Matrix columns[] = new Matrix[other.cols];
+        for(int i = 0; i< other.cols; i++){
+            columns[i] = other.getColVector(i+1);
+        };
+
+        Matrix resultantCols[] = new Matrix[other.cols];
+
+        for(int i = 0; i< other.cols; i++){
+            resultantCols[i] = this.mult(columns[i].asArray());
+        }
+
+        Matrix result = new Matrix(rows, other.cols);
+        for(int i = 0; i< other.cols; i++){
+            for(int j = 0; j< rows; j++){
+                result.setValueAt(j+1, i+1, resultantCols[i].getValueAt(j+1, 1));
+            }
+        }
+        return result;
+
     }
 
+    private Matrix mult(float[] colVector) throws Exception{
+        float nums[] = new float[rows];
+        for(int i = 0; i< rows; i++){
+            float sum = 0;
+            for(int j = 0; j< cols; j++){
+                sum += this.getValueAt(i+1, j+1)*colVector[j];
+            }
+            nums[i] = sum;
+        }
+        return new Matrix(rows, 1, nums);
+    }
+
+    public float[] asArray(){
+        return nums;
+    }
 
 
 
