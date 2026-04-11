@@ -1,10 +1,12 @@
+package matrix;
 import java.io.File;
 
-public class FileHandler {
+public class MatrixLoader {
     
-    File file;
+    private File file;
+    private Matrix Matrixes[];
 
-    public FileHandler(String filePath, boolean create, boolean binary) throws Exception{
+    public MatrixLoader(String filePath, boolean create, boolean binary) throws Exception{
         file = new File(filePath);
         if(create){
             if(file.createNewFile()){
@@ -14,4 +16,7 @@ public class FileHandler {
             }
         }
     }
+
+
+    
 }

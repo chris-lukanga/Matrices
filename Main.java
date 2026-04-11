@@ -1,4 +1,4 @@
-
+import matrix.Matrix;
 
 class Main{
     public static void main(String[] args) throws Exception{
@@ -14,7 +14,9 @@ class Main{
         Matrix B  = new Matrix(1, 3, new float[]{ 2, 0, 4});
 
 
-        System.out.println(A.mult(B).getTranspose());
+        System.out.println(mat2);
+        mat2.swapRows(1, 2);
+        System.out.println(mat2 );
         //System.out.println(mat2.getValueAt(3,4));
     }
 
