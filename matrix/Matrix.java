@@ -374,6 +374,14 @@ public class Matrix {
     public int getRows() {
         return rows;
     }
+
+    public void determinant() throws Exception{
+        if(!isSquare()){
+            throw new Exception("Determinant is only defined for square matrices");
+        }
+        //TODO: implement determinant using row reduction
+
+    }
     
 
 }

@@ -5,20 +5,7 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class MatrixLoader {
-    
-    private File file;
-    private Matrix Matrixes[];
 
-    public MatrixLoader(String filePath, boolean create, boolean binary) throws Exception{
-        file = new File(filePath);
-        if(create){
-            if(file.createNewFile()){
-                System.out.println("File created: " + file.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        }
-    }
 
     public static Matrix[] readFromFile(File file) throws Exception{
         Matrix[] Matrixes = null;
@@ -88,6 +75,8 @@ public class MatrixLoader {
     public static void writeToFiile(File file, Matrix m, boolean append) throws Exception{
         writeToFile(file, new Matrix[]{m}, append);
     }
+
+
 
 
     
