@@ -17,8 +17,6 @@ class Main{
         Matrix A = new Matrix(2, 1 , new float[]{1,2});
         Matrix B  = new Matrix(1, 3, new float[]{ 2, 0, 4});
 
-        
-
         MatrixLoader.writeToFile(new File("testOutput.txt"), new Matrix[]{mat, mat2, A, B}, false);
 
         MatrixLoader.writeToFiile(new File("testOutput.txt"), A.mult(B), true);

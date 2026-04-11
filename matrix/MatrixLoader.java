@@ -30,14 +30,13 @@ public class MatrixLoader {
             
         ){
             sc.useDelimiter("[,\\s]+");
-            int numOfMatrixes = sc.nextInt();
-            System.out.println("Number of matrixes: " + numOfMatrixes);
-            Matrixes = new Matrix[numOfMatrixes];
+            Matrixes = new Matrix[0];
 
-            for(int i = 0; i< numOfMatrixes; i++){
+            while(sc.hasNext()){
+                Matrix matrix = null;
                 int rows = sc.nextInt();
                 int cols = sc.nextInt();
-                System.out.println("Matrix " + (i+1) + ": " + rows + "x" + cols);
+                System.out.println("Reading a matrix of size " + rows + "x" + cols);
                 sc.nextLine(); // Move to the next line after reading rows and cols
                 float[] values = new float[rows*cols];
                 for(int j = 0; j< rows; j++){
@@ -47,7 +46,9 @@ public class MatrixLoader {
                         values[j*cols + k] = Float.parseFloat(tokens[k]);
                     }
                 }
-                Matrixes[i] = new Matrix(rows, cols, values);
+                matrix = new Matrix(rows, cols, values);
+                Matrixes = java.util.Arrays.copyOf(Matrixes, Matrixes.length + 1);
+                Matrixes[Matrixes.length - 1] = matrix;
             }
 
 
@@ -67,12 +68,11 @@ public class MatrixLoader {
             PrintWriter pw = new PrintWriter(new FileWriter(file, append));
 
         ){
-            pw.println(Matrixes.length);
             for(Matrix m : Matrixes){
-                pw.println(m.getRows() + "," + m.getCols());
+                pw.println(m.getRows() + " " + m.getCols());
                 for(int i = 1; i<= m.getRows(); i++){
                     for(int j = 1; j<= m.getCols(); j++){
-                        pw.print(m.getValueAt(i, j) + ",");
+                        pw.print(m.getValueAt(i, j) + " ");
                     }
                     pw.println();
                 }
