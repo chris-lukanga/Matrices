@@ -367,6 +367,13 @@ public class Matrix {
             this.setValueAt(i, l+1, this.getValueAt(i, l+1) + k*this.getValueAt(j, l+1));
         }
     }
+
+    public int getCols() {
+        return cols;
+    }
+    public int getRows() {
+        return rows;
+    }
     
 
 }
