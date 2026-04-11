@@ -1,3 +1,4 @@
+package matrix;
 public class Matrix {
 
     private int cols;
@@ -308,5 +309,71 @@ public class Matrix {
         }
         return sum;
     }
+
+    //elementary row operations
+
+    /**
+     * swaps the two rows of the matrix, defined only for square matrices
+     * @param i the first row
+     * @param j the second row
+     * @throws Exception
+     */
+    public void swapRows(int i, int j) throws Exception{
+        if(i > rows || i<=0){
+            throw new Exception(" Row "+ i+" does not exist");
+        }
+        if(j>rows || j<=0){
+            throw new Exception(" Row " + j+" does not exist");
+        }
+
+        for(int k = 0; k< cols; k++){
+            float temp = this.getValueAt(i, k+1);
+            this.setValueAt(i, k+1, this.getValueAt(j, k+1));
+            this.setValueAt(j, k+1, temp);
+        }
+    }
+
+    /**
+     * multiplies a row by a nonzero scalar, defined only for square matrices
+     * @param i the row to multiply
+     * @param k the scalar to multiply by
+     * @throws Exception
+     */
+    public void multRow(int i, float k) throws Exception{
+        if(i > rows || i<=0){
+            throw new Exception(" Row "+ i+" does not exist");
+        }
+        for(int j = 0; j< cols; j++){
+            this.setValueAt(i, j+1, k*this.getValueAt(i, j+1));
+        }
+    }
+
+    /**
+     * adds a multiple of one row to another row, defined only for square matrices
+     * @param i the row to add to
+     * @param j the row to add from
+     * @param k the scalar to multiply the second row by before adding
+     * @throws Exception
+     */
+
+    public void addRow(int i, int j, float k) throws Exception{
+        if(i > rows || i<=0){
+            throw new Exception(" Row "+ i+" does not exist");
+        }
+        if(j>rows || j<=0){
+            throw new Exception(" Row " + j+" does not exist");
+        }
+        for(int l = 0; l< cols; l++){
+            this.setValueAt(i, l+1, this.getValueAt(i, l+1) + k*this.getValueAt(j, l+1));
+        }
+    }
+
+    public int getCols() {
+        return cols;
+    }
+    public int getRows() {
+        return rows;
+    }
+    
 
 }
