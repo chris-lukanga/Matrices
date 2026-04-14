@@ -23,6 +23,15 @@ public class Matrix {
         this.nums = nums;
     }
 
+    public Matrix(Matrix mat) throws Exception{
+        float nums[] = new float[mat.rows*mat.cols];
+        for(int i = 0; i< nums.length; i++){
+            nums[i] = mat.nums[1];
+        }
+       this(mat.rows, mat.cols, nums);
+        
+    }
+
     public Matrix(int rows, int cols){
 
         this.cols = cols;
@@ -373,6 +382,44 @@ public class Matrix {
     }
     public int getRows() {
         return rows;
+    }
+
+
+    public Matrix rowEchelonForm() throws Exception{
+        Matrix copy = new Matrix(this);
+        return copy;
+    }
+
+    /**
+     * Checks if the matrix is in Row Echelon Form
+     * @return returns true if it is in REF, false otherwise
+     * @throws Exception 
+     */
+    public boolean isREF() throws Exception{
+        //boolean isREF =  false;
+        for(int i = 0; i<rows; i++){
+            Matrix rowVec = getRowVector(i+1);
+            //System.out.println(rowVec);
+            for(int j = 0; j< i; j++){
+                //System.out.println(rowVec.getValueAt(1, j+1));
+                if(rowVec.getValueAt(1, j+1) != 0.0){
+
+                    return false;
+                }
+            }  
+         }
+         return true;
+    }
+
+    public boolean isZeroMatrix(){
+        for(int i = 0;i<rows*cols; i++){
+            if( nums[i] != 0.0){
+
+                return false;
+
+            }
+        }
+        return true;
     }
     
 

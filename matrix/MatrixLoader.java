@@ -2,6 +2,7 @@ package matrix;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MatrixLoader {
@@ -29,28 +30,25 @@ public class MatrixLoader {
             Scanner sc = new Scanner(file);
             
         ){
-            sc.useDelimiter("[,\\s]+");
-            int numOfMatrixes = sc.nextInt();
-            System.out.println("Number of matrixes: " + numOfMatrixes);
-            Matrixes = new Matrix[numOfMatrixes];
+            sc.useDelimiter("[,\\s\\&]+");
+            Matrixes = new Matrix[0];
 
-            for(int i = 0; i< numOfMatrixes; i++){
+            while(sc.hasNext()){
                 int rows = sc.nextInt();
                 int cols = sc.nextInt();
-                System.out.println("Matrix " + (i+1) + ": " + rows + "x" + cols);
+                System.out.println("Matrix " + ": " + rows + "x" + cols);
                 sc.nextLine(); // Move to the next line after reading rows and cols
                 float[] values = new float[rows*cols];
                 for(int j = 0; j< rows; j++){
                     String line = sc.nextLine();
-                    String[] tokens = line.trim().split("[,\\s]+");
+                    String[] tokens = line.trim().split("[,\\s\\&]+");
                     for(int k = 0; k< cols; k++){
                         values[j*cols + k] = Float.parseFloat(tokens[k]);
                     }
                 }
-                Matrixes[i] = new Matrix(rows, cols, values);
+                Matrixes = Arrays.copyOf(Matrixes, Matrixes.length+1);
+                Matrixes[Matrixes.length-1] = new Matrix(rows, cols, values);
             }
-
-
         }
         catch(Exception e){
             System.err.println("An error occurred while reading the file.");
@@ -67,7 +65,6 @@ public class MatrixLoader {
             PrintWriter pw = new PrintWriter(new FileWriter(file, append));
 
         ){
-            pw.println(Matrixes.length);
             for(Matrix m : Matrixes){
                 pw.println(m.getRows() + "," + m.getCols());
                 for(int i = 1; i<= m.getRows(); i++){

@@ -22,9 +22,12 @@ class Main{
 
         MatrixLoader.writeToFiile(new File("testOutput.txt"), A.mult(B), true);
 
-        for(Matrix m : matrices){
-            System.out.println(m);
+        Matrix C =  new Matrix(3, 4, new float[]{1, 1, 2, 9, 2, 4, -3, 1, 3, 6, -5, 0});
+        for(int i = 0; i< matrices.length; i++){
+            System.out.println(matrices[i].isREF());
         }
+
+
     }
 
 }
