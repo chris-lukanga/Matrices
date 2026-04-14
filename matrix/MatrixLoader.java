@@ -55,9 +55,7 @@ public class MatrixLoader {
             e.printStackTrace();
         }
         return Matrixes;
-
     }
-
 
     public static void writeToFile(File file, Matrix[] Matrixes, boolean append) throws Exception{
 
@@ -74,7 +72,6 @@ public class MatrixLoader {
                     pw.println();
                 }
             }
-
         }
         catch(Exception e){
             System.err.println("An error occurred while writing to the file.");

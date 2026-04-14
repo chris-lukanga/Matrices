@@ -384,11 +384,12 @@ public class Matrix {
         return rows;
     }
 
-
-    public Matrix rowEchelonForm() throws Exception{
-        Matrix copy = new Matrix(this);
-        return copy;
-    }
+    public static Matrix rowEchelonForm(Matrix m) throws Exception{
+        //TODO: implement this method
+        return null;
+        }
+        
+    
 
     /**
      * Checks if the matrix is in Row Echelon Form
@@ -396,7 +397,7 @@ public class Matrix {
      * @throws Exception 
      */
     public boolean isREF() throws Exception{
-        //boolean isREF =  false;
+        boolean zeroes[] =  new boolean[rows];
         for(int i = 0; i<rows; i++){
             Matrix rowVec = getRowVector(i+1);
             //System.out.println(rowVec);
@@ -406,17 +407,26 @@ public class Matrix {
 
                     return false;
                 }
+                zeroes[i] = rowVec.isZeroMatrix();
             }  
          }
+         //checking to see if all the zero rows are at the bottom
+            boolean foundZeroRow = false;
+            for(int i = 0; i< rows; i++){
+                if(zeroes[i]){
+                    foundZeroRow = true;
+                }else if(foundZeroRow){
+                    return false;
+                }
+            }
+
          return true;
     }
 
     public boolean isZeroMatrix(){
         for(int i = 0;i<rows*cols; i++){
             if( nums[i] != 0.0){
-
                 return false;
-
             }
         }
         return true;
